@@ -1,0 +1,21 @@
+name: CI
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    name: CI Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Gradle test
+        run: ./gradlew test
+
+      - name: Run Gradle lint
+        run: ./gradlew lint
+
+      - name: Run Gradle ktlint
+        run: ./gradlew ktlint
