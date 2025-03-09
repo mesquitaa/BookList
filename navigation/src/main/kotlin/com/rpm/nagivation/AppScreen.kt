@@ -1,4 +1,4 @@
-package com.rpm.book.navigation
+package com.rpm.nagivation
 
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavType

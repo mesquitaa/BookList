@@ -1,4 +1,4 @@
-package com.rpm.book.navigation
+package com.rpm.nagivation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
