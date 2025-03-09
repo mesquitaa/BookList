@@ -3,7 +3,6 @@ package com.rpm.details.theme
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -21,8 +20,8 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.compose.rememberNavController
-import com.rpm.details.view.BookDetailScreen
+import androidx.compose.ui.res.stringResource
+import com.rpm.details.R
 
 private val DarkColorScheme =
   darkColorScheme(
@@ -62,10 +61,10 @@ fun BookDetailsTheme(
       Scaffold(
         topBar = {
           TopAppBar(
-            title = { Text("Book Detail") },
+            title = { Text(stringResource(R.string.book_detail_title)) },
             navigationIcon = {
               IconButton(onClick = { onBackPress.invoke() }) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
+                Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.back_button_content_description))
               }
             },
           )
