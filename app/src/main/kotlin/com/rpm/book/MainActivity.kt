@@ -6,9 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.rpm.book.list.viewmodel.BookListViewModel
-import com.rpm.book.navigation.AppScreen
-import com.rpm.book.navigation.appNavGraph
+import com.rpm.details.viewmodel.BookDetailViewModel
+import com.rpm.home.viewmodel.BookListViewModel
+import com.rpm.nagivation.AppScreen
+import com.rpm.nagivation.appNavGraph
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
@@ -18,12 +19,13 @@ class MainActivity : ComponentActivity() {
     setContent {
       val navController = rememberNavController()
       val bookListViewModel: BookListViewModel by inject()
+      val bookDetailViewModel: BookDetailViewModel by inject()
 
       NavHost(
         navController = navController,
         startDestination = AppScreen.BookList.route,
       ) {
-        appNavGraph(navController, bookListViewModel)
+        appNavGraph(navController, bookListViewModel, bookDetailViewModel)
       }
     }
   }

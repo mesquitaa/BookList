@@ -16,3 +16,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "BookList"
 include(":app")
+include(":home")
+include(":navigation")
+include(":details")
+include(":ui-test")

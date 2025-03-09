@@ -1,7 +1,8 @@
 package com.rpm.book.app
 
 import android.app.Application
-import com.rpm.book.list.module.bookListModule
+import com.rpm.details.module.bookDetailModule
+import com.rpm.home.module.bookListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -14,7 +15,7 @@ class BookApplication : Application() {
     startKoin {
       androidLogger(level = Level.DEBUG)
       androidContext(this@BookApplication)
-      modules(bookListModule)
+      modules(bookListModule, bookDetailModule)
     }
   }
 }
