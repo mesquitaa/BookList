@@ -1,4 +1,4 @@
-package com.rpm.booklist.ui.theme
+package com.rpm.book.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

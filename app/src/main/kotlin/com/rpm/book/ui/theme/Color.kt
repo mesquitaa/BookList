@@ -1,4 +1,4 @@
-package com.rpm.booklist.ui.theme
+package com.rpm.book.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
