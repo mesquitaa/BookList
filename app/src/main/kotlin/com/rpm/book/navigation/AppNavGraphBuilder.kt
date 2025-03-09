@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.rpm.book.list.view.BookListScreen
-import com.rpm.book.list.viewmodel.BookListViewModel
+import com.rpm.home.view.BookListScreen
+import com.rpm.home.viewmodel.BookListViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 fun NavGraphBuilder.appNavGraph(

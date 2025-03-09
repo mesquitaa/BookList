@@ -1,4 +1,4 @@
-package com.rpm.book.list.repository.remote
+package com.rpm.home.repository.remote
 
 import com.rpm.home.service.BookListService
 import com.rpm.home.repository.remote.BookListRemoteRepository

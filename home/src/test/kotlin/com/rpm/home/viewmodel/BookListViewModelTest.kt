@@ -1,4 +1,4 @@
-package com.rpm.book.list.viewmodel
+package com.rpm.home.viewmodel
 
 import com.rpm.home.intent.BookListIntent
 import com.rpm.home.state.BookListState

@@ -1,7 +1,7 @@
 package com.rpm.book.app
 
 import android.app.Application
-import com.rpm.book.list.module.bookListModule
+import com.rpm.home.module.bookListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

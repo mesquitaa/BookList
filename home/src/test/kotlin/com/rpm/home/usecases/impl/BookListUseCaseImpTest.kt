@@ -1,4 +1,4 @@
-package com.rpm.book.list.usecases.impl
+package com.rpm.home.usecases.impl
 
 import com.rpm.home.models.Book
 import com.rpm.home.repository.BookRepository

@@ -6,9 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.rpm.book.list.viewmodel.BookListViewModel
 import com.rpm.book.navigation.AppScreen
 import com.rpm.book.navigation.appNavGraph
+import com.rpm.home.viewmodel.BookListViewModel
 import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
