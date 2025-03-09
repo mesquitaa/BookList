@@ -1,9 +1,8 @@
-package com.rpm.home.viewmodel
+package com.rpm.details.viewmodel
 
-import com.rpm.home.intent.BookListIntent
-import com.rpm.home.state.BookListState
-import com.rpm.home.usecases.BookListUseCase
-import com.rpm.home.viewmodel.BookListViewModel
+import com.rpm.details.intent.BookDetailsIntent
+import com.rpm.details.state.BookDetailsState
+import com.rpm.details.usecases.BookDetailsUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
@@ -13,15 +12,19 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class BookListViewModelTest {
-  private val mockUseCase = mockk<BookListUseCase>(relaxed = true)
+class BookDetailViewModelTest {
+  companion object {
+    private const val BOOK_ID = "1"
+  }
 
-  private val subject by lazy { BookListViewModel(mockUseCase) }
+  private val mockUseCase = mockk<BookDetailsUseCase>(relaxed = true)
+
+  private val subject by lazy { BookDetailViewModel(mockUseCase) }
 
   @BeforeEach
   fun setUp() {
@@ -37,11 +40,11 @@ class BookListViewModelTest {
   fun `processIntent - WHEN method is called THEN should invoke use case`() =
     runBlocking {
       // STUBBING
-      val mockListState = mockk<BookListState.Success>(relaxed = true)
-      coEvery { mockUseCase.invoke() } returns mockListState
+      val mockListState = mockk<BookDetailsState.Success>(relaxed = true)
+      coEvery { mockUseCase.invoke(BOOK_ID) } returns mockListState
 
       // EXECUTING
-      subject.processIntent(BookListIntent.LoadBookList)
+      subject.processIntent(BookDetailsIntent.LoadBookDetails(BOOK_ID))
 
       // VERIFYING
       assertEquals(mockListState, subject.state.value)

@@ -17,8 +17,10 @@ class BookListRemoteRepositoryTest {
   @Test
   fun `getBooks - should call service`() =
     runBlocking {
+      // EXECUTING
       subject.getBooks()
 
+      // VERIFYING
       coVerify { mockService.getBooks() }
     }
 }

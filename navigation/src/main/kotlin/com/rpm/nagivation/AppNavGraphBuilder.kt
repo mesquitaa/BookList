@@ -1,27 +1,17 @@
 package com.rpm.nagivation
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.rpm.details.view.BookDetailScreen
+import com.rpm.details.viewmodel.BookDetailViewModel
 import com.rpm.home.view.BookListScreen
 import com.rpm.home.viewmodel.BookListViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 fun NavGraphBuilder.appNavGraph(
   navController: NavHostController,
   bookListViewModel: BookListViewModel,
+  bookDetail: BookDetailViewModel,
 ) {
   composable(AppScreen.BookList.route) {
     BookListScreen(viewModel = bookListViewModel) { bookId ->
@@ -32,22 +22,11 @@ fun NavGraphBuilder.appNavGraph(
     route = AppScreen.BookDetail.route,
     arguments = AppScreen.BookDetail.arguments,
   ) { backStackEntry ->
-    val bookId = backStackEntry.arguments?.getInt("id")
-    Scaffold(
-      topBar = {
-        TopAppBar(
-          title = { Text("Book Detail") },
-          navigationIcon = {
-            IconButton(onClick = { navController.popBackStack() }) {
-              Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
-            }
-          },
-        )
-      },
-    ) { innerPadding ->
-      Column(modifier = Modifier.fillMaxSize()) {
-        Text(text = "Book id: $bookId", modifier = Modifier.padding(innerPadding))
-      }
-    }
+    val bookId = backStackEntry.arguments?.getInt("id") ?: 0
+    BookDetailScreen(
+      viewModel = bookDetail,
+      bookId = bookId,
+      onBackPress = navController::popBackStack,
+    )
   }
 }

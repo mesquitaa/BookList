@@ -6,10 +6,10 @@ plugins {
 
 android {
   namespace = "com.rpm.navigation"
-  compileSdk = 35
+  compileSdk = libs.versions.compileSdk.get().toInt()
 
   defaultConfig {
-    minSdk = 24
+    minSdk = libs.versions.minSdk.get().toInt()
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -36,9 +36,8 @@ android {
 
 dependencies {
   api(project(":home"))
+  api(project(":details"))
   api(platform(libs.androidx.compose.bom))
-  api(libs.androidx.ui)
-  api(libs.androidx.material3)
   api(libs.androidx.navigation.compose)
   api(libs.koin)
 }

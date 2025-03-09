@@ -18,3 +18,4 @@ rootProject.name = "BookList"
 include(":app")
 include(":home")
 include(":navigation")
+include(":details")
