@@ -7,13 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.rpm.details.intent.BookDetailsIntent
 import com.rpm.details.state.BookDetailsState
 import com.rpm.details.usecases.BookDetailsUseCase
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class BookDetailViewModel(
   private val bookDetailsUseCase: BookDetailsUseCase,
 ) : ViewModel() {
-  private val _state = mutableStateOf<BookDetailsState>(BookDetailsState.Idle)
-  val state: State<BookDetailsState> = _state
+  private val _uiState = MutableStateFlow<BookDetailsState>(BookDetailsState.Idle)
+  val state: StateFlow<BookDetailsState> = _uiState
 
   fun processIntent(intent: BookDetailsIntent) {
     when (intent) {
@@ -22,7 +24,7 @@ class BookDetailViewModel(
   }
 
   private fun loadBookDetail(id: String) = viewModelScope.launch {
-    _state.value = BookDetailsState.Loading
-    _state.value = bookDetailsUseCase.invoke(id)
+    _uiState.value = BookDetailsState.Loading
+    _uiState.value = bookDetailsUseCase.invoke(id)
   }
 }

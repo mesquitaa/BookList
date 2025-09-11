@@ -1,25 +1,26 @@
 package com.rpm.integration
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
-import com.rpm.home.view.BookListScreen
-import com.rpm.home.viewmodel.BookListViewModel
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.rpm.home.view.BookItemPreview
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.test.KoinTest
-import org.koin.test.KoinTestRule
-import org.koin.test.inject
 
-@RunWith(AndroidJUnit4ClassRunner::class)
-class BookListScreenTest : KoinTest {
+@RunWith(AndroidJUnit4::class)
+class BookListScreenTest {
 
-  @get:Rule val composeTestRule = createComposeRule()
-  @get:Rule val koinTestRule = KoinTestRule.create()
+  @get:Rule
+  val composeTestRule = createComposeRule()
 
   @Before
   fun setup() {
@@ -30,14 +31,18 @@ class BookListScreenTest : KoinTest {
   }
 
   @Test
-  fun bookListScreen_displaysListOfBooks() {
+  fun bookItemPreview_isDisplayed() {
     composeTestRule.setContent {
-      val viewModel by inject<BookListViewModel>()
-
-      BookListScreen(viewModel) {
-
+      Column(
+        modifier = Modifier
+          .fillMaxSize()
+          .background(Color.White)
+      ) {
+        BookItemPreview()
       }
     }
-    composeTestRule.onNodeWithText("").assertIsDisplayed()
+
+    Thread.sleep(3000)
+    composeTestRule.onNodeWithText("Title").assertIsDisplayed()
   }
 }

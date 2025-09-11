@@ -1,6 +1,7 @@
 plugins {
   alias(libs.plugins.android.library)
   alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -9,14 +10,12 @@ android {
 
   defaultConfig {
     minSdk = libs.versions.minSdk.get().toInt()
-
+    targetSdk = libs.versions.targetSdk.get().toInt()
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
-  buildTypes {
-    release {
-      isMinifyEnabled = false
-    }
+  buildFeatures {
+    compose = true
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -35,10 +34,10 @@ android {
 }
 
 dependencies {
+  implementation(libs.androidx.foundation)
   androidTestImplementation(platform(libs.androidx.compose.bom))
   androidTestImplementation(libs.androidx.activity.compose)
   androidTestImplementation(libs.androidx.navigation.compose)
-//  androidTestImplementation(libs.mockk)
   androidTestImplementation(libs.ui.test.junit4.android)
   androidTestImplementation(libs.ui.test.junit4)
   androidTestImplementation(libs.ui.test.koin)
@@ -51,7 +50,6 @@ dependencies {
   androidTestImplementation(libs.retrofit.converter.gson)
   androidTestImplementation(libs.ui.test.runner)
   debugImplementation(libs.ui.test.manifest)
-
 
   // Module dependencies
   implementation(project(":navigation"))

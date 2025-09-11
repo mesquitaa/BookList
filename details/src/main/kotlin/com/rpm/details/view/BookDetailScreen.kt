@@ -9,6 +9,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -32,20 +34,20 @@ fun BookDetailScreen(
       viewModel.processIntent(BookDetailsIntent.LoadBookDetails(bookId.toString()))
     }
 
-    val state = viewModel.state.value
+    val state = viewModel.state.collectAsState()
     BookDetailContent(state)
   }
 }
 
 @Composable
 fun BookDetailContent(
-  state: BookDetailsState,
+  state: State<BookDetailsState>,
 ) {
-  when (state) {
+  when (val st = state.value) {
     is BookDetailsState.Idle -> {}
     is BookDetailsState.Loading -> LoadingScreen()
-    is BookDetailsState.Success -> BookItem(book = state.book)
-    is BookDetailsState.Error -> ErrorScreen(message = state.message)
+    is BookDetailsState.Success -> BookItem(book = st.book)
+    is BookDetailsState.Error -> ErrorScreen(message = st.message)
   }
 }
 
